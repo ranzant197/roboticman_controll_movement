@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="robot197">
+
+    <xacro:property name="body_mesh" value="package://my_robot_description/meshes/roboticman/torso197.stl" />
+    <xacro:property name="head_mesh" value="package://my_robot_description/meshes/roboticman/head197.stl" />
+    <xacro:property name="right_arm_mesh"
+        value="package://my_robot_description/meshes/roboticman/right_arm197.stl" />
+    <xacro:property name="left_arm_mesh"
+        value="package://my_robot_description/meshes/roboticman/left_arm197.stl" />
+    <xacro:property name="right_fingure_mesh"
+        value="package://my_robot_description/meshes/roboticman/right_fingure197.stl" />
+    <xacro:property name="left_fingure_mesh"
+        value="package://my_robot_description/meshes/roboticman/left_fingure197.stl" />
+    <xacro:property name="hips_mesh" value="package://my_robot_description/meshes/roboticman/hips197.stl" />
+    <xacro:property name="left_leg_mesh"
+        value="package://my_robot_description/meshes/roboticman/left_leg197.stl" />
+    <xacro:property name="right_leg_mesh"
+        value="package://my_robot_description/meshes/roboticman/right_leg197.stl" />
+
+    <xacro:property name="body_scale" value="1 1 1" />
+    <xacro:property name="head_scale" value="1 1 1" />
+    <xacro:property name="right_arm_scale" value="1 1 1" />
+    <xacro:property name="left_arm_scale" value="1 1 1" />
+    <xacro:property name="right_fingure_scale" value="1 1 1" />
+    <xacro:property name="left_fingure_scale" value="1 1 1" />
+    <xacro:property name="hips_scale" value="1 1 1" />
+    <xacro:property name="left_leg_scale" value="1 1 1" />
+    <xacro:property name="right_leg_scale" value="1 1 1" />
+
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <mesh filename="${body_mesh}" scale="${body_scale}" />
+            </geometry>
+            <origin xyz="0 0 0.1" rpy="0 0 0" />
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1.0" />
+            </material>
+        </visual>
+    </link>
+
+    <link name="head_link">
+        <visual>
+            <geometry>
+                <mesh filename="${head_mesh}" scale="${head_scale}" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <material name="blue">
+                <color rgba="0.2 0.2 1.0 1.0" />
+            </material>
+        </visual>
+    </link>
+
+    <link name="right_arm">
+        <visual>
+            <geometry>
+                <mesh filename="${right_arm_mesh}" scale="${right_arm_scale}" />
+            </geometry>
+            <material name="green">
+                <color rgba="0 1 0 1" />
+            </material>
+        </visual>
+    </link>
+
+    <link name="left_arm">
+        <visual>
+            <geometry>
+                <mesh filename="${left_arm_mesh}" scale="${left_arm_scale}" />
+            </geometry>
+            <material name="green">
+                <color rgba="0 1 0 1" />
+            </material>
+        </visual>
+    </link>
+
+    <link name="right_fingure">
+        <visual>
+            <geometry>
+                <mesh filename="${right_fingure_mesh}" scale="${right_fingure_scale}" />
+            </geometry>
+            <material name="red">
+                <color rgba="1 0 0 1" />
+            </material>
+        </visual>
+    </link>
+
+    <link name="left_fingure">
+        <visual>
+            <geometry>
+                <mesh filename="${left_fingure_mesh}" scale="${left_fingure_scale}" />
+            </geometry>
+            <material name="red">
+                <color rgba="1 0 0 1" />
+            </material>
+        </visual>
+    </link>
+
+    <link name="hips197">
+        <visual>
+            <geometry>
+                <mesh filename="${hips_mesh}" scale="${hips_scale}" />
+            </geometry>
+            <material name="green">
+                <color rgba="0 1 0 1" />
+            </material>
+        </visual>
+    </link>
+
+    <link name="left_leg">
+        <visual>
+            <geometry>
+                <mesh filename="${left_leg_mesh}" scale="${left_leg_scale}" />
+            </geometry>
+            <material name="red">
+                <color rgba="1 0 0 1" />
+            </material>
+        </visual>
+    </link>
+
+    <link name="right_leg">
+        <visual>
+            <geometry>
+                <mesh filename="${right_leg_mesh}" scale="${right_leg_scale}" />
+            </geometry>
+            <material name="red">
+                <color rgba="1 0 0 1" />
+            </material>
+        </visual>
+    </link>
+
+    <joint name="body_to_head" type="revolute">
+        <parent link="base_link" />
+        <child link="head_link" />
+        <origin xyz="0 0 12" rpy="0 0 0" />
+        <axis xyz="0 0 1" />
+        <limit lower="-1.57" upper="1.57" effort="5" velocity="2" />
+        <dynamics damping="0.2" friction="0.1" />
+    </joint>
+
+    <joint name="body_to_right_arm" type="revolute">
+        <parent link="base_link" />
+        <child link="right_arm" />
+        <origin xyz="-6 0 9" rpy="0 0.192 0" />
+        <axis xyz="1 0 0" />
+        <limit lower="-1.57" upper="1.57" effort="5" velocity="2" />
+        <dynamics damping="0.2" friction="0.1" />
+    </joint>
+
+    <joint name="body_to_left_arm" type="revolute">
+        <parent link="base_link" />
+        <child link="left_arm" />
+        <origin xyz="6 0 9" rpy="1.57 0.192 3.1416" />
+        <axis xyz="1 0 0" />
+        <limit lower="-1.57" upper="1.57" effort="5" velocity="2" />
+        <dynamics damping="0.2" friction="0.1" />
+    </joint>
+
+    <joint name="right_arm_right_fingure" type="revolute">
+        <parent link="right_arm" />
+        <child link="right_fingure" />
+        <origin xyz="-1 -5.375 -11" rpy="-0.785 0 0" />
+        <axis xyz="0 0 1" />
+        <limit lower="-1.57" upper="1.57" effort="5" velocity="2" />
+        <dynamics damping="0.2" friction="0.1" />
+
+    </joint>
+
+    <joint name="left_arm_left_fingure" type="revolute">
+        <parent link="left_arm" />
+        <child link="left_fingure" />
+        <origin xyz="-1 -10.5 -5.5" rpy="-0.785 3.1416 3.1416" />
+        <axis xyz="0 0 1" />
+        <limit lower="-1.57" upper="1.57" effort="5" velocity="2" />
+        <dynamics damping="0.2" friction="0.1" />
+    </joint>
+
+    <joint name="body_to_hips" type="fixed">
+        <parent link="base_link" />
+        <child link="hips197" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+
+    <joint name="hips_to_left_leg" type="revolute">
+        <parent link="hips197" />
+        <child link="left_leg" />
+        <origin xyz="0.5 0 -5.25" rpy="0 0 1.57" />
+        <axis xyz="0 1 0" />
+        <limit lower="-1.57" upper="1.57" effort="5" velocity="2" />
+        <dynamics damping="0.2" friction="0.1" />
+    </joint>
+
+    <joint name="hips_to_right_leg" type="revolute">
+        <parent link="hips197" />
+        <child link="right_leg" />
+        <origin xyz="-0.5 0 -5.25" rpy="3.1416 0 1.57" />
+        <axis xyz="0 1 0" />
+        <limit lower="-1.57" upper="1.57" effort="5" velocity="2" />
+        <dynamics damping="0.2" friction="0.1" />
+    </joint>
+
+</robot>
